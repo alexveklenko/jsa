@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List of friends</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container"><div id="result"></div></div>
+    <script>
+      /* 
+      Написать функцию parser(arr). Которая будет преобразовывать и возвращать одномерный массив.
+      Например: 
+      var arr = [1, 2, 'str', [3, 5],
+                [4],
+                ['undefined'], {a: 1},
+                [9, 8, [0, 'df']], 'fg'
+              ];
+      Результат для сверки [1,2,"str",3,5,4,"undefined",9,8,0,"df","fg"].
+      Для простоты, игнорируем объекты и выбрасываем их.
+      */
+
+      const arr = [1, 2, 'str', [3, 5], [4], ['undefined'], {a: 1}, [9, 8, [0, 'df']], 'fg'];
+
+      function parser(arr) {
+        let flatten = arr.reduce((acc, currVal) => {
+          
+          if (Array.isArray(currVal)) {
+            acc.push(...parser(currVal));
+            return acc;
+          } else if (currVal instanceof Object) {
+            return acc;
+          } else {
+            acc.push(currVal);
+            return acc;            
+          }
+
+          return acc;
+        }, [])
+
+        return flatten;
+      }
+
+      console.log(parser(arr));
+
+    </script>
+  </body>
+</html>

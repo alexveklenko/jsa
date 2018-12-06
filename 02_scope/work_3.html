@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List of friends</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container"><div id="result"></div></div>
+    <script>
+      /* 
+      Написать функцию sum(arr). Которая будет считать сумму в массиве.
+      Например: var arr = [1, 2, [3, 4, [5, 6], 7], 8, [9, 10]];
+      Результат для сверки 55.
+      НИКОГДА! для таких задач не использовать arr.toString()
+      числа должны оставаться числами.
+      */
+
+      const arr = [1, 2, [3, 4, [5, 6], 7], 8, [9, 10]];
+
+      function sum(arr) {
+        const result = arr.reduce((acc, currVal) => {
+          if (Array.isArray(currVal)) {
+            return acc + sum(currVal);
+          } else {
+            return acc + currVal;
+          }          
+        }, 0)
+        return result;
+      }
+
+      console.log(sum(arr));
+
+    </script>
+  </body>
+</html>
